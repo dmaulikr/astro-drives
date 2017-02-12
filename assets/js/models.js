@@ -245,5 +245,24 @@ var Models = {
         lineGeometry.computeLineDistances();
 
         return new THREE.Line(lineGeometry, new THREE.LineDashedMaterial({ color: 0x6484b7, dashSize: 3, gapSize: 5 }));
+    },
+    
+    text : function(text, size, material){
+        var textMaterial = material || Models.materials.flame;
+        var textSize = size || 30;    
+        var textGeometry = new THREE.TextGeometry(
+            text,
+            {
+                size: textSize,
+                height: 9,
+                curveSegments : 10,
+                font : game.fonts.main,
+                bevelEnabled : true,
+                bevelThickness : 1,
+                bevelSize : 1
+            }
+        );
+        textGeometry.center();
+        return textMesh = new THREE.Mesh(textGeometry, textMaterial);
     }
 }

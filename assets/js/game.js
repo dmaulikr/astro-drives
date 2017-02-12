@@ -77,12 +77,14 @@ Game.prototype.createScene = function () {
     this.scene.add(this.directionalLight);
     
     this.keyboard = new THREEx.KeyboardState(this.renderer.domElement);
-    this.renderer.domElement.setAttribute("tabIndex", "0");
-	this.renderer.domElement.focus();
     
     // add canvas to DOM
     document.body.appendChild(this.renderer.domElement);
 
+    this.renderer.domElement.setAttribute("tabIndex", "1");
+	this.renderer.domElement.focus();
+    this.renderer.domElement.click();
+    
     // set renderer size
     this.updateViewportSize();
     window.addEventListener('resize', this.updateViewportSize.bind(this));

@@ -7,7 +7,7 @@ Game.prototype.states.preload = function (game) {
 
     this.fontLoader = new THREE.FontLoader();
 
-    this.preloadFont('fonts/helvetiker_regular.typeface.json', 'main');
+    this.preloadFont('assets/fonts/spaceship_bullet_regular.json', 'main');
 
     this.checkPending();
 };
@@ -23,7 +23,7 @@ Game.prototype.states.preload.prototype.destroy = function (game) {
 
 Game.prototype.states.preload.prototype.preloadFont = function (fontFile, fontName) {
     this.addPending();
-    this.fontLoader.load('fonts/spaceship_bullet_regular.json', function (font) {
+    this.fontLoader.load('assets/fonts/spaceship_bullet_regular.json', function (font) {
         this.game.registerFont(fontName, font);
         this.resolvePending();
     }.bind(this));

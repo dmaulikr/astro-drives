@@ -6,7 +6,7 @@ Game.prototype.states.endgame = function(game) {
 
     this.satellite = Models.satelliteTwo();
     
-    this.satellite.scale.set(8, 8, 8);
+    this.satellite.scale.set(6, 6, 6);
     this.satellite.rotation.set(-0.9, 6.37, 5.39);
     this.satellite.position.set(560, 50, 40);
     
@@ -19,45 +19,18 @@ Game.prototype.states.endgame = function(game) {
     if(highscore < game.gameData.score){
         this.highscore = true;
         
-            this.highScoreLabel = new THREE.Mesh( new THREE.TextGeometry( 'new record!', {
-                font: game.fonts['main'],
-                size: 50,
-                height: 5,
-                curveSegments: 12,
-                bevelThickness: 1,
-                bevelSize: 1,
-                bevelEnabled: true
-            }), Models.materials.flame );
-
-            this.highScoreLabel.position.set(-230, -150, 0);
+            this.highScoreLabel = Models.text('new record!', 50, Models.materials.flame);
+            this.highScoreLabel.position.y = -100;
             game.scene.add( this.highScoreLabel );
         
     }
     
-    this.scoreLabel = new THREE.Mesh( new THREE.TextGeometry( 'your score:', {
-        font: game.fonts['main'],
-        size: 50,
-        height: 5,
-        curveSegments: 12,
-        bevelThickness: 1,
-        bevelSize: 1,
-        bevelEnabled: true
-    }), Models.materials.body );
-    
-    this.scoreLabel.position.set(-230, 100, 0);
+    this.scoreLabel = Models.text('your score', 60, Models.materials.body);
+    this.scoreLabel.position.y = 100;
     game.scene.add( this.scoreLabel );
     
-    this.scoreText = new THREE.Mesh( new THREE.TextGeometry( game.gameData.score, {
-        font: game.fonts['main'],
-        size: 100,
-        height: 5,
-        curveSegments: 12,
-        bevelThickness: 1,
-        bevelSize: 1,
-        bevelEnabled: true
-    }), Models.materials.body );
-    
-    this.scoreText.position.set(-100, -50, 0);
+    this.scoreText = Models.text(game.gameData.score, 100, Models.materials.body );
+    this.scoreText.position.y =  0;
     game.scene.add( this.scoreText );
     game.scene.rotation.x = 0;
     
@@ -73,7 +46,7 @@ Game.prototype.states.endgame.prototype.update = function(game) {
     if(this.highscore){
         var scl = Math.sin(this.counter * Math.PI / 180) / 10 +1
         this.highScoreLabel.scale.set(scl, scl, scl);
-        this.highScoreLabel.position.x = -20*(Math.sin(this.counter * Math.PI / 180)) -230;
+        // this.highScoreLabel.position.x = -20*(Math.sin(this.counter * Math.PI / 180));
     }
     if(game.keyboard.pressed('space')){
         game.setState('planets');
