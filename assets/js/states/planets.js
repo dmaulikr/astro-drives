@@ -58,7 +58,7 @@ Game.prototype.states.planets = function (game) {
     this.spaceShip = Models.spaceShip();
     game.scene.add(this.spaceShip);
     
-    game.scene.rotation.x = 5.2;
+    game.scene.rotation.set(5.2,0,0);
 };
 
 Game.prototype.states.planets.prototype.update = function (game) {
